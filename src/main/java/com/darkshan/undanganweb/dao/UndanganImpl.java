@@ -183,6 +183,9 @@ public class UndanganImpl implements UndanganDao {
             }
 
         }
+        System.out.printf("==================");
+        System.out.println(mahasiswas.size());
+        System.out.printf("==================");
         return mahasiswas;
 
     }
