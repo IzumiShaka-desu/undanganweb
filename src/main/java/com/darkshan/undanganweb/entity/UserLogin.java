@@ -5,22 +5,30 @@
  */
 package com.darkshan.undanganweb.entity;
 
+import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author Darkshan
  */
-public class UserLogin {
+@Table(name="userlogin")
+@Entity
+public class UserLogin implements Serializable {
     @Id @GeneratedValue
     @Column(name="id_user",unique=true)
     private int id_user;
-    @Column(name="username")
+    @Column(name="username",unique=true)
     private String username;
     @Column(name="password")
     private String password;
+
+    public UserLogin() {
+    }
 
     public UserLogin(int id_user, String username, String password) {
         this.id_user = id_user;

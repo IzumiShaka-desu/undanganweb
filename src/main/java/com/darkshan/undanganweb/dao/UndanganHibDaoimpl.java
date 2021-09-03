@@ -6,6 +6,7 @@
 package com.darkshan.undanganweb.dao;
 
 import com.darkshan.undanganweb.entity.Undangan;
+import com.darkshan.undanganweb.entity.UserLogin;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,7 +35,7 @@ public class UndanganHibDaoimpl implements UndanganDao{
             Logger.getLogger(UndanganHibDaoimpl.class.getName()).log(Level.SEVERE, null, e);
             session.getTransaction().rollback();
         } finally {
-            session.close();
+//            session.close();
         }
         return false;
     }
@@ -50,7 +51,7 @@ public class UndanganHibDaoimpl implements UndanganDao{
             Logger.getLogger(UndanganHibDaoimpl.class.getName()).log(Level.SEVERE, null, e);
             session.getTransaction().rollback();
         } finally {
-            session.close();
+//            session.close();
         }
         return false;
     }
@@ -66,13 +67,13 @@ public class UndanganHibDaoimpl implements UndanganDao{
             Logger.getLogger(UndanganHibDaoimpl.class.getName()).log(Level.SEVERE, null, e);
             session.getTransaction().rollback();
         } finally {
-            session.close();
+//            session.close();
         }
         return false;
     }
 
     @Override
-    public Undangan getUndanganById(Long i) {
+    public Undangan getUndanganById(int i) {
          try {
             Query query = session.createQuery("FROM Undangan u WHERE u.id_undangan=:id_undangan");
             query.setParameter("id_undangan", i);
@@ -80,7 +81,7 @@ public class UndanganHibDaoimpl implements UndanganDao{
         } catch (Exception e) {
             Logger.getLogger(UndanganHibDaoimpl.class.getName()).log(Level.SEVERE, null, e);
         } finally {
-            session.close();
+//            session.close();
         }
         return null;
     }
@@ -94,8 +95,42 @@ public class UndanganHibDaoimpl implements UndanganDao{
         } catch (Exception e) {
             Logger.getLogger(UndanganHibDaoimpl.class.getName()).log(Level.SEVERE, null, e);
         } finally {
-            session.close();
+//            session.close();
         }
         return null;
+    }
+
+    @Override
+    public boolean register(String username, String password) {
+         try {
+              session.beginTransaction();
+              UserLogin user=new UserLogin();
+              user.setUsername(username);
+              user.setPassword(password);
+            int id = (int) session.save(user);
+            session.getTransaction().commit();
+            return String.valueOf(id)!= null;
+        } catch (Exception e) {
+            Logger.getLogger(UndanganHibDaoimpl.class.getName()).log(Level.SEVERE, null, e);
+            session.getTransaction().rollback();
+        } finally {
+//            session.close();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean login(String username, String password) {
+        try {
+            Query query = session.createQuery("FROM UserLogin u WHERE u.username=:username AND u.password=:password");
+            query.setParameter("username", username);
+            query.setParameter("password",password);
+            return  query.list().size()>0;
+        } catch (Exception e) {
+            Logger.getLogger(UndanganHibDaoimpl.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+//            session.close();
+        }
+        return false;
     }
 }

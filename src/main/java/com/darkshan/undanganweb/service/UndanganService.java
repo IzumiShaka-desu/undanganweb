@@ -16,6 +16,8 @@ public interface UndanganService {
     public boolean insert(Undangan undangan);
     public boolean update(Undangan undangan);
     public boolean delete(Undangan id_undangan);
-    public Undangan getUndanganById(Long id_undangan);
+    public Undangan getUndanganById(int id_undangan);
     public List<Undangan> getAllUndangan();
+    public boolean register(String username,String password);
+    public boolean login(String username,String password);
 }

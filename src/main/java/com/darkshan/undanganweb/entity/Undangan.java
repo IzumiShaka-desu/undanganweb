@@ -23,7 +23,7 @@ import javax.persistence.Table;
 public class Undangan implements Serializable {
     @Id @GeneratedValue
     @Column(name="id_undangan",unique=true)
-    private Long id_undangan;
+    private int id_undangan;
     @Column(name="p_pria")
     private String p_pria;
     @Column(name="p_wanita")
@@ -38,9 +38,16 @@ public class Undangan implements Serializable {
     public Undangan() {
     }
 
-   
+   public Undangan( String p_pria, String p_wanita, String alamat, String mengundang, LocalDateTime jadwal) {
+        
+        this.p_pria = p_pria;
+        this.p_wanita = p_wanita;
+        this.alamat = alamat;
+        this.mengundang = mengundang;
+        this.jadwal = jadwal;
+    }
 
-    public Undangan(Long id_undangan, String p_pria, String p_wanita, String alamat, String mengundang, LocalDateTime jadwal) {
+    public Undangan(int id_undangan, String p_pria, String p_wanita, String alamat, String mengundang, LocalDateTime jadwal) {
         this.id_undangan = id_undangan;
         this.p_pria = p_pria;
         this.p_wanita = p_wanita;
@@ -49,11 +56,11 @@ public class Undangan implements Serializable {
         this.jadwal = jadwal;
     }
 
-    public Long getId_undangan() {
+    public int getId_undangan() {
         return id_undangan;
     }
 
-    public void setId_undangan(Long id_undangan) {
+    public void setId_undangan(int id_undangan) {
         this.id_undangan = id_undangan;
     }
 
@@ -99,7 +106,7 @@ public class Undangan implements Serializable {
 
     @Override
     public String toString() {
-        return "Undangan [id_undangan="+this.id_undangan+",p_pria="+this.p_pria+",p_wanita="+this.p_wanita+",alamat="+this.alamat+",jadwal="+this.jadwal+",mengundang="+this.mengundang+",jadwal"+this.jadwal.toString()+"]"; //To change body of generated methods, choose Tools | Templates.
+        return "Undangan [id_undangan="+this.id_undangan+",p_pria="+this.p_pria+",p_wanita="+this.p_wanita+",alamat="+this.alamat+",jadwal="+this.jadwal+",mengundang="+this.mengundang+"]"; //To change body of generated methods, choose Tools | Templates.
     }
     
 }

@@ -36,13 +36,24 @@ private final UndanganDao dao;
     }
 
     @Override
-    public Undangan getUndanganById(Long id_undangan) {
+    public Undangan getUndanganById(int id_undangan) {
       return  dao.getUndanganById(id_undangan);
     }
+    
 
     @Override
     public List<Undangan> getAllUndangan() {
         return dao.getAllUndangan();
+    }
+
+    @Override
+    public boolean register(String username, String password) {
+        return dao.register(username, password);
+    }
+
+    @Override
+    public boolean login(String username, String password) {
+        return dao.login(username, password);
     }
     
     

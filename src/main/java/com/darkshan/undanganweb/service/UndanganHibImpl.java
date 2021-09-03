@@ -36,13 +36,23 @@ public class UndanganHibImpl implements UndanganService {
     }
 
     @Override
-    public Undangan getUndanganById(Long id_undangan) {
+    public Undangan getUndanganById(int id_undangan) {
         return dao.getUndanganById(id_undangan);
     }
 
     @Override
     public List<Undangan> getAllUndangan() {
         return dao.getAllUndangan();
+    }
+
+    @Override
+    public boolean register(String username, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean login(String username, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

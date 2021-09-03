@@ -111,7 +111,7 @@ public class UndanganImpl implements UndanganDao {
     }
 
     @Override
-    public Undangan getUndanganById(Long id_undangan) {
+    public Undangan getUndanganById(int id_undangan) {
         PreparedStatement prepareStatement = null;
         ResultSet executeQuery = null;
         Undangan m = null;
@@ -161,7 +161,7 @@ public class UndanganImpl implements UndanganDao {
                 String alamat=executeQuery.getNString("alamat");
                 String p_wanita=executeQuery.getNString("p_wanita");
                 String p_pria=executeQuery.getNString("p_pria");
-                Long id_undangan=executeQuery.getLong("id_undangan");
+                int id_undangan=executeQuery.getInt("id_undangan");
                 LocalDateTime jadwal=LocalDateTime.parse(executeQuery.getString("jadwal")) ;
                 String mengundang=executeQuery.getNString("mengundang");
                 Undangan  m = new Undangan( id_undangan,  p_pria,  p_wanita,  alamat,  mengundang,  jadwal);
@@ -188,6 +188,16 @@ public class UndanganImpl implements UndanganDao {
         System.out.printf("==================");
         return mahasiswas;
 
+    }
+
+    @Override
+    public boolean register(String username, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean login(String string, String string1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
